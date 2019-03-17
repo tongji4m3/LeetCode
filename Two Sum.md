@@ -1,16 +1,4 @@
-```java
-public static void main(String[] args)
-{
-	Scanner scanner = new Scanner(System.in);
-	double x = scanner.nextDouble();
-	double y = scanner.nextDouble();
-	if ((x >= 0 && x < 1) && (y >= 0 && y < 1))
-		System.out.println("true");
-	else
-		System.out.println("false");
-}
 
-```  
 给定一个整数数组，返回两个数字的索引，使它们相加到特定目标。
 
 您可以假设每个输入只有一个解决方案，并且您可能不会两次使用相同的元素。
@@ -23,7 +11,7 @@ public static void main(String[] args)
 返回[ 0，1 ]。
 ```  
 
-```C++  
+```++  
 //不成功的解法:(原因是如果是两个相同元素得不到正确的值,例如[3,3])
 static vector<int> twoSum(vector<int> & nums, int target)
 {
