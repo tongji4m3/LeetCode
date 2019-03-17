@@ -48,7 +48,7 @@ static vector<int> twoSum(vector<int>& nums, int target)
 			return { p->second , i  };
 			//return {1,2,3,4}可以返回一个vector数组
 		}
-		map[nums[i]] = i;
+		map[nums[i]] = i;//把这个数放入map
 	}
 }
 ```
