@@ -14,34 +14,41 @@
 ```  
 
 ```c++
-//不成功的解法:(原因是如果是两个相同元素得不到正确的值,例如[3,3])
+//暴力算法,效率较低
 static vector<int> twoSum(vector<int> & nums, int target)
-{
-    vector<int> copy_nums(nums);
-		sort(copy_nums.begin(), copy_nums.end());
-		//排好序,且没有重复元素,只有一个解决方案
-		vector<int> result;
-		if (copy_nums.size()<2 || target < copy_nums[0] || target>(copy_nums[copy_nums.size()-1]+ copy_nums[copy_nums.size() - 2]))
+	{
+		vector<int> result;	
+		for (int i = 0; i < nums.size() - 1; i++)
 		{
-			return result;
-		}
-		vector<int>::iterator it;
-		for (it=copy_nums.begin(); it!=copy_nums.end()-1; it++)
-		{
-			int target_i = target - *it;//which we want
-			if (binary_search(it+1, copy_nums.end(), target_i))
+			for (int j = i + 1; j < nums.size(); j++)
 			{
-				vector<int>::iterator result_it;
-				result_it = lower_bound(it+1, copy_nums.end(), target_i);
-				vector<int>::iterator nums_it= find(nums.begin(), nums.end(), *it);
-				vector<int>::iterator nums_end= find(nums.begin(), nums.end(), *result_it);
-				int first=distance(nums.begin(), nums_it);
-				int second=distance(nums.begin(), nums_end);
-				result.push_back(first);
-				result.push_back(second);
-				
+				if (nums[i] + nums[j] == target)
+				{
+					result.push_back(i);
+					result.push_back(j);
+				}
 			}
 		}
 		return result;
- }
+		
+	}
+
+```
+
+```c++
+static vector<int> twoSum(vector<int>& nums, int target) 
+{
+	//s需要#include<unordered_map>,unordered_map适用于查找,查找平均为o(1)?
+	unordered_map<int, int> map;
+	for (int i = 0; i < nums.size(); i++) 
+	{
+		auto p = map.find(target - nums[i]);
+		if (p != map.end()) 
+		{
+			return { p->second , i  };
+			//return {1,2,3,4}可以返回一个vector数组
+		}
+		map[nums[i]] = i;
+	}
+}
 ```
