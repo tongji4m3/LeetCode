@@ -9,9 +9,10 @@
 
 因为nums [ 0 ] + nums [ 1 ] = 2 + 7 = 9，
 返回[ 0，1 ]。
+
 ```  
 
-```++  
+```java
 //不成功的解法:(原因是如果是两个相同元素得不到正确的值,例如[3,3])
 static vector<int> twoSum(vector<int> & nums, int target)
 {
