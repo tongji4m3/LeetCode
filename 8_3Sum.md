@@ -17,39 +17,31 @@
 ```
 
 ```c++
-class Solution 
+class Solution
 {
-//算法差不多,但是细节要注意,越界问题,重复问题,最好不要分类讨论,如size()<3
 public:
-	vector<vector<int> > threeSum(vector<int> &nums) 
+	vector<vector<int> > threeSum(vector<int> &nums)
 	{
 		vector<vector<int> > result;
 		sort(nums.begin(), nums.end());
-		for (int i = 0; i != nums.size(); ++i) 
+		for (int i = 0; i != nums.size(); ++i)
 		{
-			int target = -nums[i];//找到相反数
-			int front = i + 1;
-			int back = nums.size() - 1;
-			while (front < back) 
-			{
-				int sum = nums[front] + nums[back];
-				if (sum < target) //front++可以使得sum变大
-					front++;
-				else if (sum > target)
-					back--;
-				else 
+				int target = -nums[i];
+				int lo = i+1, hi = nums.size() - 1;
+				while (lo < hi)
 				{
-					vector<int> zero_vec(3, 0);
-					zero_vec[0] = nums[i];
-					zero_vec[1] = nums[front];
-					zero_vec[2] = nums[back];
-					result.push_back(zero_vec);
-					while (front < back && nums[front] == zero_vec[1]) front++;//避免找到重复的
-					while (front < back && nums[back] == zero_vec[2]) back--;
+					int sum = nums[lo]+nums[hi];
+					if (target < sum)      --hi;
+					else if (target > sum) ++lo;
+					else
+					{
+						result.push_back({ nums[i],nums[lo],nums[hi] });
+						while (lo != hi && nums[lo + 1] == nums[lo]) ++lo;
+						while (lo != hi && nums[hi - 1] == nums[hi]) --hi;
+						++lo;
+					}
 				}
-			}
-			while (i != nums.size() && i + 1 < nums.size() && nums[i + 1] == nums[i])//避免重复的
-				++i;
+			while (i + 1 != nums.size() && nums[i + 1] == nums[i]) ++i;
 		}
 		return result;
 	}
