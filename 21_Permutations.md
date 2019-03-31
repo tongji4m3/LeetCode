@@ -15,7 +15,7 @@ Output:
 ]
 ```
 
-```
+```c++
 //自己实现的非递归方式
 class Solution //12 ms
 {
@@ -65,5 +65,30 @@ public:
 };
 ```
 
-```
+```c++
 //递归的方式
+class Solution 
+{
+public:
+	void recursive(vector<int>& nums, vector<vector<int>>& result, int n)
+	{
+		if (n == nums.size() - 1) 
+		{
+			result.push_back(nums);
+			return;
+		}
+		for (int i = n; i < nums.size(); ++i) 
+		{
+			swap(nums[i], nums[n]);
+			recursive(nums, result, n + 1);
+			swap(nums[i], nums[n]);//避免对下一个产生影响
+		}
+	}
+	vector<vector<int>> permute(vector<int>& nums) 
+	{
+		vector<vector<int>> result;
+		recursive(nums, result, 0);
+		return result;
+	}
+};
+```
