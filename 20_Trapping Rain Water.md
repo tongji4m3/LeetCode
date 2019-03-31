@@ -58,6 +58,18 @@ public:
 ```
 
 ```c++
+/*
+Lambda表达式 一个函数
+C++用一个流缓冲区来同步C的标准流,通过std :: ios_base :: sync_with_stdio函数可以解除这种同步,节省时间
+每次操作的时候（调用”<<” ”>>”）都要刷新（调用flush），这样增加了IO的负担，
+通过tie(nullptr)来解除std :: cin和std :: cout之间的绑定，来降低IO的负担使效率提升
+*/
+static const auto __ = []() 
+{
+	std::ios::sync_with_stdio(false);
+	std::cin.tie(nullptr);
+	return nullptr;
+}();
 class Solution 
 {
 public:
