@@ -75,14 +75,14 @@ public:
 		for (int i = 1; i <= m; ++i) 
 		{
 			pre = dp[0];//第一次替换为相等所需要的操作数
-			dp[0] = i;
+			dp[0] = i;//现在的pre存了dp[i][0];
 			for (int j = 1; j <= n; ++j) 
 			{
-				int temp = dp[j];
+				int temp = dp[j];//temp存了dp[i-1][j-1]
 				if (word1[i - 1] == word2[j - 1]) 
 					dp[j] = pre;
 				else 
-					dp[j] = min(pre, min(dp[j - 1], dp[j])) + 1;
+					dp[j] = min(pre, min(dp[j - 1], dp[j])) + 1;//此时min里面的dp[j]没变,所以相当于取上,左,左上的最小值 再加1
 				pre = temp;
 			}
 		}
