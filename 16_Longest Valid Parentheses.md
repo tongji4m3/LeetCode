@@ -16,6 +16,8 @@ Explanation: The longest valid parentheses substring is "()()"
 ```c++
 class Solution 
 {
+//注意事项:stack存index所以是int类型;hi初始值为n,不能为top,因为可能s的最后是符合规范的;
+//最后max(longest,hi),不是hi-lo,因为循环里面hi=lo了,而且最前面一个的话相当于是hi-0
 public:
 	/*
 	从头到尾扫描字符串。如果当前字符是'（'，将其索引推送到堆栈。如果当前字符是'）'并且堆栈顶部索引处的字符是'（'，我们只是找到一个
