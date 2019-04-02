@@ -15,9 +15,12 @@
 
 ```c++
 //暴力算法,效率较低
-static vector<int> twoSum(vector<int> & nums, int target)
+class Solution 
+{
+public:
+	vector<int> twoSum(vector<int> & nums, int target)
 	{
-		vector<int> result;	
+		vector<int> result;
 		for (int i = 0; i < nums.size() - 1; i++)
 		{
 			for (int j = i + 1; j < nums.size(); j++)
@@ -30,25 +33,27 @@ static vector<int> twoSum(vector<int> & nums, int target)
 			}
 		}
 		return result;
-		
-	}
 
+	}
+};
 ```
 
 ```c++
-static vector<int> twoSum(vector<int>& nums, int target) 
+class Solution
 {
-	//s需要#include<unordered_map>,unordered_map适用于查找,查找平均为o(1)?
-	unordered_map<int, int> map;
-	for (int i = 0; i < nums.size(); i++) 
+public:
+	vector<int> twoSum(vector<int>& nums, int target)
 	{
-		auto p = map.find(target - nums[i]);
-		if (p != map.end()) 
+		//需要#include<unordered_map>,unordered_map适用于查找,查找平均为o(1)
+		unordered_map<int, int> value_index;
+		for (int i = 0; i != nums.size(); ++i)
 		{
-			return { p->second , i  };
-			//return {1,2,3,4}可以返回一个vector数组
+			auto iter = value_index.find(target - nums[i]);
+			if (iter != value_index.end())
+				return { i,iter->second };//return {1,2,3,4}可以返回一个vector数组
+			value_index[nums[i]] = i;//把这个数放入map
 		}
-		map[nums[i]] = i;//把这个数放入map
+		return {};
 	}
-}
+};
 ```
