@@ -11,32 +11,35 @@ Output: 1->1->2->3->4->4
 class Solution 
 {
 public:
-	ListNode* mergeTwoLists(ListNode* l1, ListNode* l2) 
+	ListNode* mergeTwoLists(ListNode* l1, ListNode* l2) //归并两个链表
 	{
-		if (l1 == NULL) return l2;
-		if (l2 == NULL) return l1;
-
-		ListNode* current = new ListNode(0);
-		ListNode* head = current;
-		if (l1->val > l2->val) 
+		ListNode * head=recursive(l1,l2);
+		return head;
+	}
+private:
+	ListNode* recursive(ListNode* l1, ListNode* l2) 
+	{
+		if (!l1)
+			return l2;
+		if (!l2)
+			return l1;
+		ListNode *current;
+		if(l1->val < l2->val)
 		{
-			current->next = new ListNode(l2->val);
-			l2 = l2->next;
+			current = l1;
+			current->next = recursive(l1->next, l2);
 		}
-		else 
+		else
 		{
-			current->next = new ListNode(l1->val);
-			l1 = l1->next;
+			current = l2;
+			current->next = recursive(l1, l2->next);
 		}
-		current = current->next;
-		current->next = mergeTwoLists(l1, l2);
-		delete head;
 		return current;
 	}
 };
 ```
 ```c++
-//更快更简单的一种
+//非递归
 ListNode* mergeTwoLists(ListNode* l1, ListNode* l2) //归并两个链表
 	{
 		ListNode *head = new ListNode(-1), *current = head;
