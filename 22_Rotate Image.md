@@ -55,6 +55,7 @@ public:
 			//一个for循环交换一圈,例如刚刚开始的lo与hi时,交换最外圈
 			for (int i = 0; i != (hi - lo); ++i) //旋转交换,每个i交换四个角落的
 			{
+				//i必须从0开始,如果从lo开始内层的交换会产生偏差
 				swap(matrix[lo][lo + i], matrix[lo + i][hi]);
 				swap(matrix[lo][lo + i], matrix[hi][hi - i]);
 				swap(matrix[lo][lo + i], matrix[hi - i][lo]);
