@@ -21,7 +21,7 @@ public:
 		int result = -1;
 		for (int i = 0; i != heights.size(); ++i)
 		{
-			// 如果比栈顶元素大就直接进栈 
+			// 如果比栈顶元素大就直接进栈 注意存的是索引,所以比较的时候不能直接比较索引
 			if (int_stack.empty() || heights[int_stack.top()] <= heights[i])//保证是递增的顺序
 				int_stack.push(i);
 			else
