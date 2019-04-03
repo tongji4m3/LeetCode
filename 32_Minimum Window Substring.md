@@ -18,7 +18,7 @@ class Solution
 public:
 	string minWindow(string s, string t) 
 	{
-		vector<int> vec(64, 0);
+		vector<int> vec(64, 0);//存int不是存char
 		for (auto c : t) 
 			vec[c-'A']++;
 		int counter = t.size(), begin = 0, end = 0;
