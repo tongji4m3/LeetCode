@@ -30,7 +30,7 @@ public:
 		//假设s为leetcode,对于s的每个字符例如c,如果切分成功过leet,那么尝试切分c,和leetc
 		for (int i = 1; i <= s.size(); ++i) 
 		{
-			for (int j = i - 1; j >= 0; --j) 
+			for (int j = i - 1; j >= 0; --j) //从i-1到0开始找的好处是更短的字符一般能更快的找到,速度更快
 			{
 				if (dp[j]) 
 				{
