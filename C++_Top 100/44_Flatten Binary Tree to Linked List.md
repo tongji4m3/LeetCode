@@ -24,26 +24,49 @@
 ```
 
 ```c++
-class Solution 
+class Solution
 {
 public:
-	void flatten(TreeNode* root) 
+	void flatten(TreeNode* root)
 	{
 		if (!root) return;
-		TreeNode* newRoot = new TreeNode(root->val);
-		TreeNode* current=newRoot;
+		TreeNode* current = new TreeNode(-1);//没有意义,只是给个初始化而已
 		stack<TreeNode*> s;
 		s.push(root);
 		while (!s.empty())
 		{
 			TreeNode* node = s.top(); s.pop();
-			current->right = node;
+			current->right = node;//要用的不是current,而只是想改变root指向的内容
 			current->left = nullptr;
 			current = current->right;
 			if (node->right) s.push(node->right);
 			if (node->left)  s.push(node->left);
 		}
-		root = newRoot->right;
+		//root = newRoot->right;这一步没有用,因为只有二级指针才能在函数里面改变指向
+		//而root所指向的内容在前面的循环中已经改变了
 	}
+};
+```
+
+```c++
+//递归
+class Solution
+{
+public:
+	void flatten(TreeNode* root)
+	{
+		if (!root) return;
+		if (root->left)
+		{
+			flatten(root->left);
+			node->right = root->right;
+			root->right = root->left;
+			root->left = NULL;
+		}
+		node = root;
+		flatten(root->right);
+	}
+private:
+	TreeNode *node;
 };
 ```
