@@ -24,9 +24,9 @@ public:
 		int minVal = nums[0];
 		for (int i = 1; i != nums.size(); ++i) //因为可能有负数的情况,所以同时存最小最大很有必要
 		{
-			int temp = minVal;
+			int temp = minVal;//因为下一条语句把minVal改为了当前的i的minVal
 			minVal = min(nums[i], min(nums[i] * minVal, nums[i] * maxVal));
-			maxVal = max(nums[i], max(nums[i] * temp, nums[i] * maxVal));
+			maxVal = max(nums[i], max(nums[i] * temp, nums[i] * maxVal));//需要的是i-1的minVal所以用temp
 			result = max(result, maxVal);
 		}
 		return result;
