@@ -27,21 +27,20 @@
 ```
 
 ```c++
-class Solution 
+class Solution
 {
 public:
 	ListNode* getIntersectionNode(ListNode* headA, ListNode* headB)
 	{
-		ListNode* p1 = headA;
-		ListNode* p2 = headB;
-		if (!p1|| !p2) return NULL;
-		while (p1  && p2  && p1 != p2) //多走一个来回,这样两者走的路程将一样
+		if (!headA || !headB) return NULL;
+		ListNode* p1 = headA, * p2 = headB;
+		while (p1!=p2) //多走一个来回,这样两者走的路程将一样
 		{
 			p1 = p1->next;
 			p2 = p2->next;
-			if (p1 == p2) return p1;
-			if (p1 == NULL) p1 = headB;//交换走,保证路程一样
-			if (p2 == NULL) p2 = headA;
+			if (p1 == p2) return p1;//要不再相交点相遇,要不再NULL处相遇
+			if (!p1) p1 = headB;//交换走,保证路程一样
+			if (!p2) p2 = headA;
 		}
 		return p1;
 	}
