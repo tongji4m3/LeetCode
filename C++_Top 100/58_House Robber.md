@@ -17,22 +17,23 @@ Explanation: Rob house 1 (money = 2), rob house 3 (money = 9) and rob house 5 (m
 ```
 
 ```c++
-class Solution 
+class Solution
 {
 public:
-	int rob(vector<int>& nums) 
+	int rob(vector<int>& nums)
 	{
 		if (nums.empty()) return 0;
 		if (nums.size() == 1) return nums[0];
-		if (nums.size() == 2) return max(nums[0],nums[1]);
-		int max1 = nums[0], max2 = nums[1];
+		int first = nums[0], second = nums[1];
+		int result = max(first, second);
 		for (int i = 2; i != nums.size(); ++i)
 		{
-			int temp = max2;
-			max2 = nums[i] + max1;//max2代表当前最大
-			max1 = max(max1, temp);//max1代表隔一个的最大
+			int temp = second;
+			second = first + nums[i];
+			first = max(first,temp);
+			result = max(result, second);
 		}
-		return max(max1,max2);
+		return result;
 	}
 };
 ```
