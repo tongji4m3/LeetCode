@@ -101,3 +101,100 @@ private:
 	}
 };
 ```
+
+
+```c++
+//写法简单,但速度慢
+struct Node
+{
+	int key;
+	Node* next ;
+	Node(int x) :key(x), next(NULL) {}
+};
+
+class LRUCache 
+{
+public:
+	LRUCache(int capacity) :_capacity(capacity) {}
+	int get(int key) 
+	{
+		if (_map.find(key) != _map.end())
+		{
+			delete_it(key);
+			add_it(key);
+			return _map[key];
+		}
+		
+			return -1;
+	}
+
+	void put(int key, int value) 
+	{
+		if (_map.find(key) != _map.end())
+		{
+			_map[key] = value;
+			delete_it(key);
+			add_it(key);
+		}
+		else if (_count < _capacity)
+		{
+			_map[key] = value;
+			add_it(key);
+			++_count;
+		}
+		else
+		{
+			_map.erase(_tail->key);
+			delete_it(_tail->key);
+			_map[key] = value;
+			add_it(key);
+		}
+	}
+private:
+	unordered_map<int, int> _map;
+	int _capacity;
+	int _count = 0;
+	Node* _head=NULL,*_tail=NULL;
+
+	void delete_it(int key)
+	{
+		if (!_head->next)
+		{
+			_head = NULL;
+			_tail = NULL;
+			return;
+		}
+		if (_head->key == key)
+		{
+			Node* temp = _head;
+			_head = _head->next;
+			temp->next = NULL;
+			return;
+		}
+		Node* pre = _head;
+		while (pre->next->key != key)
+		{
+			pre = pre->next;
+		}
+		Node* temp = pre->next;
+		pre->next = pre->next->next;
+		temp->next = NULL;
+		if (!pre->next)
+			_tail = pre;
+	}
+	void add_it(int key)
+	{
+		if (!_head)
+		{
+			_head = new Node(key);
+			_tail = _head;
+		}
+		else
+		{
+			Node* node = new Node(key);
+			node->next = _head;
+			_head = node;
+		}
+	}
+};
+```
