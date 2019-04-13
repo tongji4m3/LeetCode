@@ -14,16 +14,18 @@
 ```
 
 ```c++
-class Solution 
+class Solution
 {
 public:
-	int majorityElement(vector<int>& nums) 
+	int majorityElement(vector<int>& nums)
 	{
-		int result=0, counts = 0;
-		for (auto & i : nums) 
+		int result = 0;
+		int count = 0;
+		for (const int& i : nums)
 		{
-			if (!counts) result = i;
-			counts += (i == result) ? 1 : -1;
+			if (count == 0) result = i;
+			if (result == i) ++count;
+			else --count;
 		}
 		return result;
 	}
