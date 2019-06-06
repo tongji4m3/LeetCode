@@ -25,7 +25,7 @@ public:
 			{
 				if (lo == -1)//第一次初始化lo为第一个0出现的位置
 					lo = i;
-				nums[lo] = nums[i + 1];
+				nums[lo] = nums[i + 1];//确保了lo,i的位置全为0，这样换就没有风险
 				nums[i + 1] = 0;
 				if (nums[lo] != 0)
 					++lo;
