@@ -28,26 +28,45 @@
 class Solution
 {
 public:
-	bool canFinish(int n, vector<pair<int, int>>& pre) 
+	bool canFinish(int n, vector<vector<int>>& pre)
 	{
-		vector<vector<int>> adj(n, vector<int>());
-		vector<int> degree(n, 0);
-		for (auto& p : pre) 
+		//以[0,1]为例
+		vector<vector<int>> adj(n, vector<int>());//[0,1]则代表1->0,则存1,0
+		vector<int> degree(n, 0);//代表每一个在能用之前的先决条件
+
+		for (auto& i : pre)
 		{
-			adj[p.second].push_back(p.first);
-			++degree[p.first];//p.first的先决条件又加了一个
+			adj[i[1]].push_back(i[0]);//存入1,0
+			++degree[i[0]];//0有一个先决条件了
 		}
-		queue<int> q;
-		for (int i = 0; i != n; ++i)
-			if (degree[i] == 0) q.push(i);//没有先决条件的先加入
-		while (!q.empty()) 
+		queue<int> q;//存储没先决条件的工序的索引
+
+		for (int i = 0; i != degree.size(); ++i)
 		{
-			int cur = q.front(); q.pop(); 
-			--n;//只剩下n个要学的
-			for (auto next : adj[cur])//adj[cur]里面是要先学cur的
-				if (--degree[next] == 0) q.push(next);//把cur给学了,如果能学,就加入进去
+			if (degree[i] == 0)//注意比较的是值，存的是索引
+			{
+				q.push(i);
+			}
 		}
-		return n == 0;//全部能学掉
+
+		//如果上一循环中没存入，则不会进行这个循环，说明了死结
+		while (!q.empty())
+		{
+			int k = q.front();//front在顶部
+			q.pop();
+			--n;
+			for (auto& i : adj[k])//以k为先决条件的-1
+			{
+				//这里的i就代表了工序的索引
+				if (--degree[i] == 0)
+				{
+					q.push(i);
+				}
+			}
+		}
+
+		//以n来算，如果每一个都搞定了，那么就完美解决
+		return n == 0;
 	}
-};
+}; 
 ```
