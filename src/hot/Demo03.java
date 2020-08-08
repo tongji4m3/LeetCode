@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Demo3
+public class Demo03
 {
     public int lengthOfLongestSubstring1(String s)
     {
@@ -39,6 +39,6 @@ public class Demo3
 
     public static void main(String[] args)
     {
-        new Demo3().lengthOfLongestSubstring("ABC");
+        new Demo03().lengthOfLongestSubstring("ABC");
     }
 }

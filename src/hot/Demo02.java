@@ -2,7 +2,7 @@ package hot;
 
 import utils.ListNode;
 
-public class Demo2
+public class Demo02
 {
     public ListNode addTwoNumbers(ListNode l1, ListNode l2)
     {
@@ -46,7 +46,7 @@ public class Demo2
     {
         ListNode l1 = new ListNode(7);
         ListNode l2 = new ListNode(7);
-        new Demo2().addTwoNumbers(l1, l2);
+        new Demo02().addTwoNumbers(l1, l2);
 
     }
 

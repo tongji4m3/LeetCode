@@ -1,6 +1,6 @@
 package hot;
 
-public class Demo5
+public class Demo05
 {
     public String longestPalindrome(String s)
     {
