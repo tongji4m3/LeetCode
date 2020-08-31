@@ -19,7 +19,7 @@ public class Demo32_look
 
         int lo = 0, hi = 0;
         int start = 0, length = Integer.MAX_VALUE;
-        int match = 0;
+        int match = 0;//匹配情况
 
         while (hi < s.length())
         {
