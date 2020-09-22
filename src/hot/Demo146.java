@@ -3,7 +3,7 @@ package hot;
 import java.util.*;
 
 
-public class LRUCache
+public class Demo146
 {
     private Map<Integer, Node> map;//存储的是key,Node
     DoubleList cache;//用于保证删除是O(1)
@@ -70,7 +70,7 @@ public class LRUCache
 
     }
 
-    public LRUCache(int capacity)
+    public Demo146(int capacity)
     {
         this.map = new HashMap<>();
         this.cache = new DoubleList();
