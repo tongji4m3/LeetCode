@@ -4,13 +4,13 @@ import java.util.Deque;
 import java.util.LinkedList;
 import java.util.NoSuchElementException;
 
-public class MinStack
+public class Demo155
 {
     Deque<Integer> stack;
     Deque<Integer> minStack;
 
 
-    public MinStack()
+    public Demo155()
     {
         stack = new LinkedList<>();
         minStack = new LinkedList<>();
