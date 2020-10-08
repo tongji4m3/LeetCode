@@ -11,20 +11,21 @@ public class Demo64
         if (matrix.length == 0) return 0;
         int result = 0;
         int M = matrix.length, N = matrix[0].length;
-        int[][] dp = new int[M+1][N+1];//为了不用再次初始化
+        int[][] dp = new int[M + 1][N + 1];//为了不用再次初始化
         for (int i = 1; i <= M; i++)
         {
             for (int j = 1; j <= N; j++)
             {
-                if(matrix[i-1][j-1]=='1')
+                if (matrix[i - 1][j - 1] == '1')
                 {
-                    dp[i][j] = Math.min(Math.min(dp[i - 1][j], dp[i][j - 1]), dp[i - 1][j - 1])+1;
+                    dp[i][j] = Math.min(Math.min(dp[i - 1][j], dp[i][j - 1]), dp[i - 1][j - 1]) + 1;
                     result = Math.max(result, dp[i][j]);
                 }
             }
         }
-        return result*result;
+        return result * result;
     }
+
     /*
     该方法太麻烦了
      */
@@ -76,7 +77,8 @@ public class Demo64
                 {
                     temp = j + 1;
                     left[j] = 0;
-                } else
+                }
+                else
                 {
                     left[j] = Math.max(temp, left[j]);
                 }
@@ -89,7 +91,8 @@ public class Demo64
                 {
                     temp = j;
                     right[j] = N;
-                } else
+                }
+                else
                 {
                     right[j] = Math.min(right[j], temp);
                 }
