@@ -4,43 +4,41 @@ import utils.ListNode;
 
 public class Demo234 {
     public boolean isPalindrome(ListNode head) {
-        if (head == null || head.next == null) {
-            return true;
-        }
-        //用快慢指针找到链表的中点
-        ListNode fast = head, slow = head;
+        if (head == null) return true;
+        boolean result = true;
+        ListNode slow = head, fast = head.next;
         while (fast != null && fast.next != null) {
             fast = fast.next.next;
             slow = slow.next;
         }
-        //如果是奇数,就是正中,偶数则是第二条链表的起始位置
+        //反转链表
+        ListNode second = reverseList(slow.next);
+        slow.next = null;
 
-        //对后半段反转链表
-        ListNode pre = reverse(slow);
 
-        //前后段链表逐个对比
-        ListNode first = head, second = pre;
-        while (second != null) {
-            if (first.val != second.val) {
-                reverse(pre);
-                return false;
+        ListNode cur1 = head, cur2 = second;
+        while (cur2 != null) {
+            if (cur1.val != cur2.val) {
+                result = false;
+                break;
             }
-            first = first.next;
-            second = second.next;
+            cur1 = cur1.next;
+            cur2 = cur2.next;
         }
+        //需要将链表还原
+        second = reverseList(second);
+        slow.next = second;
 
-        //将后半段链表反转回来
-        reverse(pre);
-        return true;
+        return result;
     }
 
-    private ListNode reverse(ListNode head) {
-        ListNode pre = null, temp = head, cur = head;
+    private ListNode reverseList(ListNode head) {
+        ListNode pre = null, cur = head, next = null;
         while (cur != null) {
-            cur = cur.next;
-            temp.next = pre;
-            pre = temp;
-            temp = cur;
+            next = cur.next;
+            cur.next = pre;
+            pre = cur;
+            cur = next;
         }
         return pre;
     }
