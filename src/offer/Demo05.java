@@ -9,5 +9,6 @@ public class Demo05 {
         replaceAll() 所用的替换参数可以是普通字符串，也可以是正则表达式。他需要先判断传入参数是不是正则表达式
          */
         return s.replace(" ", "%20");
+
     }
 }
