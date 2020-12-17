@@ -6,7 +6,7 @@ import java.util.Deque;
 import java.util.LinkedList;
 import java.util.List;
 
-public class Demo32 {
+public class Demo32_1 {
     public int[] levelOrder(TreeNode root) {
         if (root == null) return new int[0];
 
