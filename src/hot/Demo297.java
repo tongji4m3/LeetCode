@@ -41,7 +41,7 @@ public class Demo297 {
             return null;
         }
         else {
-            root = new TreeNode(Integer.valueOf(list.get(0)));
+            root = new TreeNode(Integer.parseInt(list.get(0)));
             list.remove(0);
             root.left = deRecursive(list);
             root.right = deRecursive(list);
