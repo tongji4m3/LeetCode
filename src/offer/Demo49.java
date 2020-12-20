@@ -1,5 +1,8 @@
 package offer;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Demo49 {
     /*
    丑数只包含因子 2, 3, 5，因此有 “丑数 = 某较小丑数 * 某因子”
