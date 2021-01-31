@@ -1,6 +1,9 @@
 package niuke;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Stack;
 
 public class JZ19 {
     public ArrayList<Integer> printMatrix(int[][] matrix) {
@@ -33,5 +36,9 @@ public class JZ19 {
             --right;
         }
         return result;
+    }
+
+    public static void main(String[] args) {
+        Queue<Integer> queue = new LinkedList<>();
     }
 }
