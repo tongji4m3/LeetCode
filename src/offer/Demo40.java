@@ -52,9 +52,7 @@ public class Demo40 {
         if (k < 0 || k > arr.length) return new int[0];
         //默认是最小堆,但是需要最大堆,这样我们超过k个,就弹出最大的
         //实现大根堆需要重写一下比较器
-        Queue<Integer> pq = new PriorityQueue<>((value1, value2) -> {
-            return value2 - value1;
-        });
+        Queue<Integer> pq = new PriorityQueue<>((value1, value2) -> value2 - value1);
         for (int i = 0; i < arr.length; i++) {
             if (pq.size() < k) {
                 pq.offer(arr[i]);
