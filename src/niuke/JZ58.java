@@ -2,6 +2,8 @@ package niuke;
 
 import utils.TreeNode;
 
+import java.util.Collections;
+
 public class JZ58 {
     boolean isSymmetrical(TreeNode root) {
         if (root == null) return true;
