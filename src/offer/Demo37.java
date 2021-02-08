@@ -2,6 +2,8 @@ package offer;
 
 import utils.TreeNode;
 
+import java.util.Arrays;
+
 public class Demo37 {
     // Encodes a tree to a single string.
     public String serialize(TreeNode root) {
@@ -55,5 +57,13 @@ public class Demo37 {
         root.right.right = new TreeNode(5);
         String serialize = new Demo37().serialize(root);
         System.out.println(serialize);
+
+
+        String[] s = "1 2 3 null ".split(" ");
+        System.out.println(s.length);
+        System.out.println("x"+s[0]+"x");
+        System.out.println("x"+s[1]+"x");
+        System.out.println("x"+s[2]+"x");
+        System.out.println("x"+s[3]+"x");
     }
 }
