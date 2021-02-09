@@ -27,6 +27,6 @@ public class Demo41 {
     public double findMedian() {
         //size相同则总数为偶数,
         return pqMin.size() != pqMax.size() ?pqMin.peek():(pqMin.peek() + pqMax.peek()) / 2.0;
-        
+
     }
 }
