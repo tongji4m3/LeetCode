@@ -1,12 +1,30 @@
 import java.util.Arrays;
 
 public class MainTest {
+    public boolean VerifySquenceOfBST(int [] sequence) {
+        return dfs(sequence, 0, sequence.length - 1);
+    }
+
+    private boolean dfs(int [] sequence, int lo, int hi) {
+        if (hi <= lo) return true;
+
+        int root = sequence[hi];
+        int rightIndex = lo;
+        while (sequence[rightIndex] < root) {
+            rightIndex++;
+        }
+        //检查
+        for (int i = rightIndex; i < hi; i++) {
+            if (sequence[i] >= root) {
+                return false;
+            }
+        }
+
+        return dfs(sequence, lo, rightIndex - 1) && dfs(sequence, rightIndex, hi - 1);
+    }
+
     public static void main(String[] args) {
-        Integer[] a = new Integer[]{1, 2, 5, 4, 9, 3, 1, 2, 3, 7};
-        Arrays.sort(a,(num1,num2)-> num2-num1);
-        Arrays.sort(a);
-        int[] x = new int[]{1,3,2};
-        Arrays.sort(x);
-        System.out.println(Arrays.toString(a));
+        int[] a = new int[]{4,8,6,12,16,14,10};
+        new MainTest().VerifySquenceOfBST(a);
     }
 }

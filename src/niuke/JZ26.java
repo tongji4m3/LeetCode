@@ -69,6 +69,7 @@ public class JZ26 {
             }
             leftTail.right = pRootOfTree;
             pRootOfTree.left = leftTail;
+
             return leftHead;
         }
 
